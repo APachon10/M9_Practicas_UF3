@@ -2,10 +2,8 @@ package TCP;
 
 import java.io.*;
 import java.net.*;
-class ServidorTCP
-{
-	public static void main(String args[])
-	{
+class ServidorTCP{
+	public static void main(String args[]){
 		// Primero indicamos la dirección IP local
 		try{
 			System.out.println("LocalHost = " +

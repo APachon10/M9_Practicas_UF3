@@ -26,10 +26,8 @@ class ClienteTCP{
 				// Creamos el Socket
 				sckt = new Socket(direcc,puerto);
 				// Extraemos los streams de entrada y salida
-				dis = new
-						DataInputStream(sckt.getInputStream());
-				dos = new
-						DataOutputStream(sckt.getOutputStream());
+				dis = new DataInputStream(sckt.getInputStream());
+				dos = new DataOutputStream(sckt.getOutputStream());
 				// Lo escribimos
 				dos.writeInt(numero);
 				// Leemos el resultado final
