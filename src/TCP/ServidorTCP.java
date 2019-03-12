@@ -6,8 +6,7 @@ class ServidorTCP{
 	public static void main(String args[]){
 		// Primero indicamos la dirección IP local
 		try{
-			System.out.println("LocalHost = " +
-					InetAddress.getLocalHost().toString());
+			System.out.println("LocalHost = " +InetAddress.getLocalHost().toString());
 		}
 		catch (UnknownHostException uhe){
 			System.err.println("No puedo saber la dirección IPlocal : " + uhe);
@@ -15,10 +14,11 @@ class ServidorTCP{
 		// Abrimos un "Socket de Servidor" TCP en el puerto 1234.
 		ServerSocket ss = null;
 		try{
-			ss = new ServerSocket(1234);
+			ss = new ServerSocket(1234,0,InetAddress.getByName(null));
 		}
 		catch (IOException ioe){
-			System.err.println("Error al abrir el socket de servidor : " + ioe);System.exit(-1);
+			System.err.println("Error al abrir el socket de servidor : " + ioe);
+			System.exit(-1);
 		}
 		int entrada;
 		long salida;
@@ -46,8 +46,7 @@ class ServidorTCP{
 				dos.close(); 
 				sckt.close();
 				// Registramos en salida estandard
-				System.out.println( "Cliente = " + direcc + ":"+ puerto
-						+ "\tEntrada = " + entrada + "\tSalida = " +salida );
+				System.out.println( "Cliente = " + direcc + ":"+ puerto+ "\tEntrada = " + entrada + "\tSalida = " +salida );
 			}
 			catch(Exception e){
 				System.err.println("Se ha producido laexcepción : " +e);

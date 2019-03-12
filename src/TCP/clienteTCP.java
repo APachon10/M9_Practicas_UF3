@@ -9,6 +9,7 @@ class ClienteTCP{
 		InetAddress direcc = null;
 		try{
 			direcc = InetAddress.getByName(args[0]);
+			System.out.println("Direccion : "+ direcc);
 		}catch(UnknownHostException uhe){
 			System.err.println("Host no encontrado : " + uhe);
 			System.exit(-1);
@@ -24,7 +25,7 @@ class ClienteTCP{
 				// Convertimos el texto en número
 				int numero = Integer.parseInt(args[n]);
 				// Creamos el Socket
-				sckt = new Socket(direcc,puerto);
+				sckt = new Socket("localhost",puerto);
 				// Extraemos los streams de entrada y salida
 				dis = new DataInputStream(sckt.getInputStream());
 				dos = new DataOutputStream(sckt.getOutputStream());
