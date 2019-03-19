@@ -7,8 +7,9 @@ class ClienteTCP{
 		// Leemos el primer parámetro, donde debe ir la dirección
 		// IP del servidor
 		InetAddress direcc = null;
+		System.out.println("args "+args[0]);
 		try{
-			direcc = InetAddress.getByName(args[0]);
+			direcc = InetAddress.getByName("localhost");
 			System.out.println("Direccion : "+ direcc);
 		}catch(UnknownHostException uhe){
 			System.err.println("Host no encontrado : " + uhe);
@@ -17,7 +18,9 @@ class ClienteTCP{
 		// Puerto que hemos usado para el servidor
 		int puerto = 1234; 
 		// Para cada uno de los argumentos...
+		
 		for (int n=1;n<args.length;n++){
+			System.out.println("args: "+args[n]);
 			Socket sckt = null;
 			DataInputStream dis = null;
 			DataOutputStream dos = null;
@@ -25,7 +28,8 @@ class ClienteTCP{
 				// Convertimos el texto en número
 				int numero = Integer.parseInt(args[n]);
 				// Creamos el Socket
-				sckt = new Socket("localhost",puerto);
+				sckt = new Socket(direcc,puerto);
+				System.out.println("Socket cliente ; "+sckt);
 				// Extraemos los streams de entrada y salida
 				dis = new DataInputStream(sckt.getInputStream());
 				dos = new DataOutputStream(sckt.getOutputStream());
