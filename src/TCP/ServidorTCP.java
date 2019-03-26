@@ -5,10 +5,16 @@ import java.net.*;
 class ServidorTCP{
 	public static void main(String args[]){
 		// Primero indicamos la dirección IP local
-		try{
-			System.out.println("LocalHost = " +InetAddress.getLocalHost().toString());
+		InetAddress direcc =null;
+		try {
+			direcc = InetAddress.getLocalHost();
+		} catch (UnknownHostException e1) {
+			e1.printStackTrace();
 		}
-		catch (UnknownHostException uhe){
+		try{
+			System.out.println("LocalHost = " +direcc.toString());
+		}
+		catch (Exception uhe){
 			System.err.println("No puedo saber la dirección IPlocal : " + uhe);
 		}
 		// Abrimos un "Socket de Servidor" TCP en el puerto 1234.
@@ -24,21 +30,22 @@ class ServidorTCP{
 		int entrada;
 		long salida;
 		// Bucle infinito
-		System.out.println("Holas");
 		while(true){
-			System.out.println("Holas");
 			try{
 				// Esperamos a que alguien se conecte a nuestro
 				Socket sckt = ss.accept();
+				System.out.println("Socket 1 : " +sckt);
 				// Extraemos los Streams de entrada y de salida
 				DataInputStream dis = new DataInputStream(sckt.getInputStream());
+				System.out.println("Dis : "+dis);
 				DataOutputStream dos = new DataOutputStream(sckt.getOutputStream());
+				System.out.println("Dos : "+dos);
 				// Podemos extraer información del socket
 				// Nº de puerto remoto
 				int puerto = sckt.getPort();
 				System.out.println("Puerto: "+puerto);
 				// Dirección de Internet remota
-				InetAddress direcc = sckt.getInetAddress();
+				InetAddress direcc2 = sckt.getInetAddress();
 				// Leemos datos de la peticion
 				entrada = dis.readInt();
 				// Calculamos resultado
